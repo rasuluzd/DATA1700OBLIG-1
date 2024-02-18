@@ -18,11 +18,21 @@ function kjopBillett() {
     etternavnEl.value=""
     tlfEl.value=""
     epostEl.value=""
-    console.log(bilettarray)
+
+    let ut = "<table><tr>" +
+        "<th>Film</th><th>Antall Billetter</th><th>Navn</th><th>Tlfnr</th><th>Epost</th>" +"</tr>"
+    for (let i = 0; i < bilettarray.length; i++) {
+        ut += "<tr>"
+        ut += "<td>" + bilettarray[i].film + "</td><td>" + bilettarray[i].antallBillett + "</td><td>" + bilettarray[i].navn + "</td><td>" + bilettarray[i].tlfnr + "</td><td>" + bilettarray[i].epost+"</td>"
+        ut += "<tr>"
+    }
+    ut += "</table>"
+    document.getElementById("Billetter").innerHTML=ut
 }
 
 function slettBillett() {
     bilettarray=[]
+    document.getElementById("Billetter").innerHTML="";
 }
 
 kjopEl.addEventListener("click",kjopBillett)
