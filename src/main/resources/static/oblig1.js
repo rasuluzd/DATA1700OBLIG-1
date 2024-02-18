@@ -10,6 +10,16 @@ let bilettarray=[]
 
 
 function kjopBillett() {
+    if (filmEl.value === "Velg film her" || antallEl.value === "" ||parseInt(antallEl.value)<0 || fornavnEl.value === "" || etternavnEl.value === "" || sjekkEmail(epostEl.value)===false||tlfEl.value===""||tlfEl.value.length!==8||isNaN(tlfEl.value)===true){
+        alert("Noen av feltene har ikke gyldig informasjon, prøv igjen")
+        filmEl.value=""
+        antallEl.value=""
+        fornavnEl.value=""
+        etternavnEl.value=""
+        tlfEl.value=""
+        epostEl.value=""
+        return;
+    }
     let obj={"film":filmEl.value,"antallBillett":antallEl.value,"navn":fornavnEl.value+etternavnEl.value,"tlfnr":tlfEl.value,"epost":epostEl.value}
     bilettarray.push(obj)
     filmEl.value="Velg film her"
@@ -34,7 +44,9 @@ function slettBillett() {
     bilettarray=[]
     document.getElementById("Billetter").innerHTML="";
 }
-
+function sjekkEmail(email){
+        return email.includes("@") && email.includes(".");
+}
 kjopEl.addEventListener("click",kjopBillett)
 slettEl.addEventListener("click",slettBillett)
 
